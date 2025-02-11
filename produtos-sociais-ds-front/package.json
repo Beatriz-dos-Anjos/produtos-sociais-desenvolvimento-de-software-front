@@ -24,6 +24,9 @@
     "cmdk": "1.0.0",
     "lucide-react": "^0.474.0",
     "next": "15.1.0",
+    "produtos-sociais-ds-front": "file:",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tailwind-merge": "^3.0.1",
@@ -31,6 +34,9 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/node": "^20.17.17",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19",
     "@types/node": "^20",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
@@ -39,6 +45,6 @@
     "postcss": "^8",
     "prettier": "^3.4.2",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5.7.3"
   }
 }
