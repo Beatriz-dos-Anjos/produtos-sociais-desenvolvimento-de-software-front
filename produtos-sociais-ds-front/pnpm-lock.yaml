@@ -53,6 +53,9 @@ importers:
       next:
         specifier: 15.1.0
         version: 15.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      produtos-sociais-ds-front:
+        specifier: 'file:'
+        version: file:(@types/react-dom@18.2.0)(@types/react@18.2.0)(tailwindcss@3.4.17)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -70,12 +73,11 @@ importers:
         specifier: ^3
         version: 3.2.0
       '@types/node':
-        specifier: ^20.17.17
+        specifier: ^20
         version: 20.17.17
       '@types/react':
         specifier: ^18.2.0
         version: 18.2.0
-
       '@types/react-dom':
         specifier: ^18.2.0
         version: 18.2.0
@@ -4928,15 +4930,25 @@ snapshots:
 
   prettier@3.4.2: {}
 
-  produtos-sociais-ds-front@file:(@types/react@19.0.8)(tailwindcss@3.4.17):
+  produtos-sociais-ds-front@file:(@types/react-dom@18.2.0)(@types/react@18.2.0)(tailwindcss@3.4.17):
     dependencies:
-      '@radix-ui/react-slot': 1.1.1(@types/react@19.0.8)(react@19.0.0)
+      '@emotion/react': 11.14.0(@types/react@18.2.0)(react@18.2.0)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@18.2.0)(react@18.2.0))(@types/react@18.2.0)(react@18.2.0)
+      '@mui/material': 5.14.18(@emotion/react@11.14.0(@types/react@18.2.0)(react@18.2.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.2.0)(react@18.2.0))(@types/react@18.2.0)(react@18.2.0))(@types/react@18.2.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@mui/styled-engine': 5.16.14(@emotion/react@11.14.0(@types/react@18.2.0)(react@18.2.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.2.0)(react@18.2.0))(@types/react@18.2.0)(react@18.2.0))(react@18.2.0)
+      '@mui/system': 6.4.3(@emotion/react@11.14.0(@types/react@18.2.0)(react@18.2.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.2.0)(react@18.2.0))(@types/react@18.2.0)(react@18.2.0))(@types/react@18.2.0)(react@18.2.0)
+      '@radix-ui/react-dialog': 1.1.6(@types/react-dom@18.2.0)(@types/react@18.2.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-label': 2.1.2(@types/react-dom@18.2.0)(@types/react@18.2.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-popover': 1.1.6(@types/react-dom@18.2.0)(@types/react@18.2.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-select': 2.1.6(@types/react-dom@18.2.0)(@types/react@18.2.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-slot': 1.1.2(@types/react@18.2.0)(react@18.2.0)
       class-variance-authority: 0.7.1
       clsx: 2.1.1
-      lucide-react: 0.474.0(react@19.0.0)
-      next: 15.1.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
+      cmdk: 1.0.0(@types/react-dom@18.2.0)(@types/react@18.2.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      lucide-react: 0.474.0(react@18.2.0)
+      next: 15.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
       tailwind-merge: 3.0.1
       tailwindcss-animate: 1.0.7(tailwindcss@3.4.17)
     transitivePeerDependencies:
@@ -4944,9 +4956,11 @@ snapshots:
       - '@opentelemetry/api'
       - '@playwright/test'
       - '@types/react'
+      - '@types/react-dom'
       - babel-plugin-macros
       - babel-plugin-react-compiler
       - sass
+      - supports-color
       - tailwindcss
 
   prop-types@15.8.1:
