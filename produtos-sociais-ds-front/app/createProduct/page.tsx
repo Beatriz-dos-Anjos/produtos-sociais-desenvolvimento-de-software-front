@@ -24,6 +24,10 @@ export default function createProduct () {
             className="w-full rounded-md border border-gray-300 px-3 py-3 text-gray-600 focus:border-gray-400 focus:outline-none focus:ring-0"
           />
         </div>
+        <div className="ml-4 mt-8 flex flex-col" style={{fontFamily: dmSans.style.fontFamily}}>
+          <strong>Foto</strong>
+          <div>A foto deverá ser JPG/PNG</div></div>
+        
       </div>
 
         </div>
