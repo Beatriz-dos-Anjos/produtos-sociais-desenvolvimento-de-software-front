@@ -1,14 +1,20 @@
 interface PaginationProps {
-  currentPage: number
-  totalPages: number
-  onPageChange: (page: number) => void
-  size?: "small" | "large"
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+  size?: "small" | "large";
 }
 
-export function Pagination({ currentPage, totalPages, onPageChange, size = "small" }: PaginationProps) {
+export function Pagination({
+  currentPage,
+  totalPages,
+  onPageChange,
+  size = "small",
+}: PaginationProps) {
   const baseClasses =
-    "flex items-center justify-center text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-  const sizeClasses = size === "small" ? "px-3 h-8 text-sm" : "px-4 h-10 text-base"
+    "flex items-center justify-center text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white";
+  const sizeClasses =
+    size === "small" ? "px-3 h-8 text-sm" : "px-4 h-10 text-base";
 
   return (
     <div className="flex">
@@ -16,8 +22,8 @@ export function Pagination({ currentPage, totalPages, onPageChange, size = "smal
         href="#"
         className={`${baseClasses} ${sizeClasses} me-3`}
         onClick={(e) => {
-          e.preventDefault()
-          if (currentPage > 1) onPageChange(currentPage - 1)
+          e.preventDefault();
+          if (currentPage > 1) onPageChange(currentPage - 1);
         }}
       >
         <svg
@@ -41,8 +47,8 @@ export function Pagination({ currentPage, totalPages, onPageChange, size = "smal
         href="#"
         className={`${baseClasses} ${sizeClasses}`}
         onClick={(e) => {
-          e.preventDefault()
-          if (currentPage < totalPages) onPageChange(currentPage + 1)
+          e.preventDefault();
+          if (currentPage < totalPages) onPageChange(currentPage + 1);
         }}
       >
         Next
@@ -63,7 +69,5 @@ export function Pagination({ currentPage, totalPages, onPageChange, size = "smal
         </svg>
       </a>
     </div>
-  )
+  );
 }
-
-
