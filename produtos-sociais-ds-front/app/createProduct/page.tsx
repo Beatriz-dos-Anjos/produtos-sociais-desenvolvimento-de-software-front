@@ -5,6 +5,7 @@ import { DM_Sans } from 'next/font/google';
 import { Input } from '@/components/ui/input';
 import UploadImage from '@/components/uploadComponent';
 import { useState } from 'react';
+import { Dropdown } from '@/components/dropdown';
 const dmSans = DM_Sans({ subsets: ['latin'], weight: ['400', '500', '700'] });
 
 export default function CreateProduct () {
@@ -14,7 +15,19 @@ export default function CreateProduct () {
     const url = URL.createObjectURL(file)
     setImageUrl(url)
   }
-
+  const handleItemClick = (item: string) => {
+    console.log(`Selected: ${item}`)
+  }
+  const dropdownUnidades = [
+    { label: "1", onClick: () => handleItemClick("Unidade 1") },
+    { label: "2", onClick: () => handleItemClick("Unidade 2") },
+    { label: "3", onClick: () => handleItemClick("Unidade 3") },
+  ]
+const dropdownOngs = [
+    { label: "ONG 1", onClick: () => handleItemClick("ONG 1") },
+    { label: "ONG 2", onClick: () => handleItemClick("ONG 2") },
+    { label: "ONG 3", onClick: () => handleItemClick("ONG 3") },
+]
     return (
         <div className="min-h-screen flex items-center  p-4 flex-col gap-4">
             <div className="">
@@ -75,6 +88,23 @@ export default function CreateProduct () {
           />
         </div>
       </div>
+      <div className='flex flex-row gap-14 justify-around'>
+      <Dropdown label="ONGs Afiliadas" placeholder="Placeholder" items={dropdownOngs} />
+      <Dropdown label="Unidades Disponíveis" placeholder="Placeholder" items={dropdownUnidades} />
+      <div className="relative w-full max-w-sm mt-6 "> 
+        <div className="relative">
+          <label htmlFor="contato-artesao" className="absolute -top-2.5 left-3 bg-white px-1 text-sm text-gray-600">
+            Preço
+          </label>
+          <Input
+            type="text"
+            id="preco"
+            placeholder="R$ 0,00"
+            className="w-full rounded-md border border-gray-300 px-3 py-3 text-gray-600 focus:border-gray-400 focus:outline-none focus:ring-0"
+          />
+        </div>
+      </div>
+    </div>
       </div>
     )
 };
