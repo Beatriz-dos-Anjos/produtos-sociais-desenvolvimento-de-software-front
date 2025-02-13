@@ -44,7 +44,7 @@ export default function Buttons() {
         </div>
       </div>
 
-      <div className="relative w-full max-w-sm"> 
+      <div className="relative w-full max-w-2xl"> 
         <div className="relative">
           <label htmlFor="contato-artesao" className="absolute -top-2.5 left-3 bg-white px-1 text-sm text-gray-600">
             Contato do Artesão Responsável

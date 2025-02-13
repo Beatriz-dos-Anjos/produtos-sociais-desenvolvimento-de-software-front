@@ -53,6 +53,9 @@ importers:
       next:
         specifier: 15.1.0
         version: 15.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      npx:
+        specifier: ^10.2.2
+        version: 10.2.2
       produtos-sociais-ds-front:
         specifier: 'file:'
         version: file:(@types/react-dom@18.2.0)(@types/react@18.2.0)(tailwindcss@3.4.17)
@@ -2065,6 +2068,14 @@ packages:
   normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
+
+  npx@10.2.2:
+    resolution: {integrity: sha512-eImmySusyeWphzs5iNh791XbZnZG0FSNvM4KSah34pdQQIDsdTDhIwg1sjN3AIVcjGLpbQ/YcfqHPshKZQK1fA==}
+    deprecated: This package is now part of the npm CLI.
+    hasBin: true
+    bundledDependencies:
+      - npm
+      - libnpx
 
   object-assign@4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
@@ -4781,6 +4792,8 @@ snapshots:
 
   normalize-path@3.0.0: {}
 
+  npx@10.2.2: {}
+
   object-assign@4.1.1: {}
 
   object-hash@3.0.0: {}
@@ -4947,6 +4960,7 @@ snapshots:
       cmdk: 1.0.0(@types/react-dom@18.2.0)(@types/react@18.2.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       lucide-react: 0.474.0(react@18.2.0)
       next: 15.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      npx: 10.2.2
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       tailwind-merge: 3.0.1
