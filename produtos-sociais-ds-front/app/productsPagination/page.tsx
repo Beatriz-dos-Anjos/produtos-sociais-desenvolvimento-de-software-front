@@ -1,16 +1,15 @@
-"use client"
-import { Pagination } from "@/components/Pagination"
-import { useState } from "react"
-
+"use client";
+import { Pagination } from "@/components/Pagination";
+import { useState } from "react";
 
 export default function Home() {
-  const [currentPage, setCurrentPage] = useState(1)
-  const totalPages = 10 // Este valor deve ser dinâmico, baseado nos seus dados reais
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10; // Este valor deve ser dinâmico, baseado nos seus dados reais
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page)
+    setCurrentPage(page);
     // Aqui você pode adicionar lógica adicional, como buscar novos dados para a página
-  }
+  };
 
   return (
     <div className="flex flex-col gap-4 p-6">
@@ -21,6 +20,5 @@ export default function Home() {
         size="small" // ou "large"
       />
     </div>
-  )
+  );
 }
-

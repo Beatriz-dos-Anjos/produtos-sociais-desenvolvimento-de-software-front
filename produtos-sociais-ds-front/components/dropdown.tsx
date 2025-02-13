@@ -1,52 +1,61 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState, useRef, useEffect } from "react"
-import { ChevronDown } from "lucide-react"
+import type React from "react";
+import { useState, useRef, useEffect } from "react";
+import { ChevronDown } from "lucide-react";
 
 interface DropdownProps {
-  label?: string
-  placeholder: string
-  items: { label: string; onClick: () => void }[]
+  label?: string;
+  placeholder: string;
+  items: { label: string; onClick: () => void }[];
 }
 
-export const Dropdown: React.FC<DropdownProps> = ({ label, placeholder, items }) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [selected, setSelected] = useState<string | null>(null)
-  const dropdownRef = useRef<HTMLDivElement>(null)
+export const Dropdown: React.FC<DropdownProps> = ({
+  label,
+  placeholder,
+  items,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false)
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
       }
-    }
+    };
 
-    document.addEventListener("mousedown", handleClickOutside)
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleTriggerClick = () => {
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(!isOpen);
+  };
 
   const handleItemClick = (label: string, onClick: () => void) => {
-    setSelected(label)
-    onClick()
-    setIsOpen(false)
-  }
+    setSelected(label);
+    onClick();
+    setIsOpen(false);
+  };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Escape") {
-      setIsOpen(false)
+      setIsOpen(false);
     }
-  }
+  };
 
   return (
     <div className="relative w-full max-w-[460px]" ref={dropdownRef}>
-      {label && <label className="block text-gray-500 text-sm mb-1">{label}</label>}
+      {label && (
+        <label className="block text-gray-500 text-sm mb-1">{label}</label>
+      )}
       <div>
         <button
           type="button"
@@ -56,7 +65,9 @@ export const Dropdown: React.FC<DropdownProps> = ({ label, placeholder, items })
           aria-expanded={isOpen}
           onClick={handleTriggerClick}
         >
-          <span className={selected ? "text-gray-700" : "text-gray-500"}>{selected || placeholder}</span>
+          <span className={selected ? "text-gray-700" : "text-gray-500"}>
+            {selected || placeholder}
+          </span>
           <ChevronDown className="w-5 h-5 text-gray-400" />
         </button>
       </div>
@@ -84,6 +95,5 @@ export const Dropdown: React.FC<DropdownProps> = ({ label, placeholder, items })
         </div>
       )}
     </div>
-  )
-}
-
+  );
+};

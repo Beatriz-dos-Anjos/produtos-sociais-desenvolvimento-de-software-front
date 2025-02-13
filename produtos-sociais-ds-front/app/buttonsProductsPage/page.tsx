@@ -1,6 +1,6 @@
-import { FavoriteButton } from "@/components/FavoriteButton"
-import { ShareButton } from "@/components/ShareButton"
-import { ReportButton } from "@/components/ReportButton"
+import { FavoriteButton } from "@/components/FavoriteButton";
+import { ShareButton } from "@/components/ShareButton";
+import { ReportButton } from "@/components/ReportButton";
 
 export default function Home() {
   return (
@@ -11,6 +11,5 @@ export default function Home() {
         <ReportButton />
       </div>
     </div>
-  )
+  );
 }
-

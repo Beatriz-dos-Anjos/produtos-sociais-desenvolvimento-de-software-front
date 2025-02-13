@@ -1,56 +1,59 @@
-"use client"
+"use client";
 
-import { Upload } from "lucide-react"
-import { useState, useRef } from "react"
-import { cn } from "@/lib/utils"
-import { DM_Sans } from "next/font/google"
+import { Upload } from "lucide-react";
+import { useState, useRef } from "react";
+import { cn } from "@/lib/utils";
+import { DM_Sans } from "next/font/google";
 interface UploadImageProps {
-  onFileSelect?: (file: File) => void
-  className?: string
+  onFileSelect?: (file: File) => void;
+  className?: string;
 }
 const uploadImageStyles = DM_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
-})
+});
 
-export default function UploadImage({ onFileSelect, className }: UploadImageProps) {
-  const [isDragging, setIsDragging] = useState(false)
-  const fileInputRef = useRef<HTMLInputElement>(null)
+export default function UploadImage({
+  onFileSelect,
+  className,
+}: UploadImageProps) {
+  const [isDragging, setIsDragging] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault()
-    setIsDragging(true)
-  }
+    e.preventDefault();
+    setIsDragging(true);
+  };
 
   const handleDragLeave = (e: React.DragEvent) => {
-    e.preventDefault()
-    setIsDragging(false)
-  }
+    e.preventDefault();
+    setIsDragging(false);
+  };
 
   const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault()
-    setIsDragging(false)
+    e.preventDefault();
+    setIsDragging(false);
 
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const file = e.dataTransfer.files[0]
+      const file = e.dataTransfer.files[0];
       if (file.type.startsWith("image/")) {
-        onFileSelect?.(file)
+        onFileSelect?.(file);
       }
     }
-  }
+  };
 
   const handleClick = () => {
-    fileInputRef.current?.click()
-  }
+    fileInputRef.current?.click();
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0]
+      const file = e.target.files[0];
       if (file.type.startsWith("image/")) {
-        onFileSelect?.(file)
+        onFileSelect?.(file);
       }
     }
-  }
+  };
 
   return (
     <div
@@ -63,14 +66,26 @@ export default function UploadImage({ onFileSelect, className }: UploadImageProp
         isDragging && "border-blue-600 bg-blue-100",
         className,
       )}
-            
     >
       <div className="flex flex-row items-center justify-center gap-2 text-center">
-      <Upload className="h-6 w-6 text-blue-500" />
-      <span className="text-sm font-medium" style={{fontFamily:uploadImageStyles.style.fontFamily, color:"black"}}>Carregar arquivo</span>
+        <Upload className="h-6 w-6 text-blue-500" />
+        <span
+          className="text-sm font-medium"
+          style={{
+            fontFamily: uploadImageStyles.style.fontFamily,
+            color: "black",
+          }}
+        >
+          Carregar arquivo
+        </span>
       </div>
-      <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        onChange={handleFileChange}
+        className="hidden"
+      />
     </div>
-  )
+  );
 }
-
