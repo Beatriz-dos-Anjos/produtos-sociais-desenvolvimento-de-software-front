@@ -23,28 +23,50 @@ export default function ProductCarousel() {
   return (
     <div className={`${dmSans.className} bg-white p-8`}>
       <div className="mb-6 text-left">
-        <h2 className="text-2xl font-bold text-[#3340FA]">Conheça nossos produtos</h2>
+        <h2 className="text-2xl font-bold text-[#3340FA]">
+          Conheça nossos produtos
+        </h2>
         <p className="text-sm text-[#3340FA]">Ajude as artesãs recifenses!</p>
       </div>
       <div className="relative">
-        <button className="absolute left-0 top-1/2 z-10 -translate-y-1/2 bg-transparent border-none p-0" onClick={scrollPrev}>
+        <button
+          className="absolute left-0 top-1/2 z-10 -translate-y-1/2 bg-transparent border-none p-0"
+          onClick={scrollPrev}
+        >
           <Image src="/arrowLeft.svg" alt="Anterior" width={24} height={24} />
         </button>
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex">
             {products.map((product, index) => (
-              <div key={index} className="flex-shrink-0 w-1/4 p-4 text-center flex flex-col items-center">
+              <div
+                key={index}
+                className="flex-shrink-0 w-1/4 p-4 text-center flex flex-col items-center"
+              >
                 <div className="flex items-center justify-center mb-4">
-                  <Image src={product.image} alt={product.title} width={200} height={200} />
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    width={200}
+                    height={200}
+                  />
                 </div>
-                <h3 className="text-[#1E293B] font-medium text-sm">{product.title}</h3>
-                <p className="text-[#1E293B] font-semibold mt-2">{product.price}</p>
-                <Button className="mt-4 bg-[#6672FA] text-white">Eu quero!</Button>
+                <h3 className="text-[#1E293B] font-medium text-sm">
+                  {product.title}
+                </h3>
+                <p className="text-[#1E293B] font-semibold mt-2">
+                  {product.price}
+                </p>
+                <Button className="mt-4 bg-[#6672FA] text-white">
+                  Eu quero!
+                </Button>
               </div>
             ))}
           </div>
         </div>
-        <button className="absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-transparent border-none p-0" onClick={scrollNext}>
+        <button
+          className="absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-transparent border-none p-0"
+          onClick={scrollNext}
+        >
           <Image src="/arrowRight.svg" alt="Próximo" width={24} height={24} />
         </button>
       </div>
