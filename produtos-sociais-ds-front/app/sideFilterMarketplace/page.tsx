@@ -1,4 +1,4 @@
-import { SidebarFilter } from "@/components/SideBarFilter"
+import { SidebarFilter } from "@/components/SideBarFilter";
 
 export default function Page() {
   return (
@@ -8,6 +8,5 @@ export default function Page() {
       </div>
       <main className="flex-1 p-6">{/* Seu conteúdo principal aqui */}</main>
     </div>
-  )
+  );
 }
-
