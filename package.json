@@ -16,6 +16,7 @@
     "@emotion/styled": "^11.14.0",
     "@radix-ui/react-label": "^2.1.2",
     "@radix-ui/react-select": "^2.1.6",
+    "@svgr/webpack": "^8.1.0",
     "next": "^15.1.0",
     "produtos-sociais-desenvolvimento-de-software-front": "file:",
     "radix-ui": "^1.1.3",
