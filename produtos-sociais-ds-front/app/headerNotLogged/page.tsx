@@ -1,6 +1,6 @@
 import Header from "@/components/ui/headerNotLogged";
 
-export default function Page() {
+export default function HeaderNotLogged() {
   return (
     <div>
       <Header />

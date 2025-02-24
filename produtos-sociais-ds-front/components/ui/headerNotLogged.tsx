@@ -5,7 +5,6 @@ import Image from "next/image";
 import { DM_Sans } from "next/font/google";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
 const menuItems = [
@@ -17,7 +16,6 @@ const menuItems = [
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
     <header
       className={`${dmSans.className} w-full bg-[#6672FA] px-4 py-4 relative`}
@@ -47,7 +45,7 @@ export default function Header() {
           </nav>
 
           <Link
-            href="/entrar"
+            href="/login"
             className="text-xs font-normal text-[#6366F1] bg-white px-4 py-1.5 rounded hover:bg-white/90 transition-colors"
           >
             Entrar
