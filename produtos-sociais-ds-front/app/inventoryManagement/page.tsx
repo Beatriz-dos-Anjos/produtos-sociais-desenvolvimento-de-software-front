@@ -7,6 +7,7 @@ import { Pagination } from "@/components/Pagination";
 import { useState } from "react";
 import Header from "@/components/ui/headerLogged";
 import Footer from "@/components/ui/footer";
+import { useRouter } from "next/navigation";
 
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
@@ -22,6 +23,7 @@ const products = Array(10).fill({
 export default function GerenciamentoDeEstoque() {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 10;
+  const router = useRouter();
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -34,7 +36,7 @@ export default function GerenciamentoDeEstoque() {
       <main className="flex-1 p-6 bg-[#F8F9FA]">
         <div className="max-w-7xl mx-auto">
           <Link
-            href="/"
+            href="/home"
             className="text-[#3340FA] mb-6 inline-flex items-center hover:underline"
           >
             <span className="mr-2">←</span> Voltar
@@ -44,7 +46,10 @@ export default function GerenciamentoDeEstoque() {
             <h1 className="text-2xl font-bold text-[#294BB6]">
               Artesanatos publicados:
             </h1>
-            <button className="bg-[#00E69A] text-[#0B236D] px-5 py-2 rounded-lg hover:bg-[#00B374] transition-colors flex items-center gap-2 shadow-md font-medium">
+            <button
+              className="bg-[#00E69A] text-[#0B236D] px-5 py-2 rounded-lg hover:bg-[#00B374] transition-colors flex items-center gap-2 shadow-md font-medium"
+              onClick={() => router.push("/createProduct")}
+            >
               <Image
                 src="/download.svg"
                 alt="Download"
