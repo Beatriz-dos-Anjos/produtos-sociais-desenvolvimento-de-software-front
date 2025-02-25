@@ -7,20 +7,22 @@ import { DM_Sans } from "next/font/google";
 
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
+// Sample product data
 const products = Array(5).fill({
   image: "/artesanato2.jpg",
   title: "Decoração Flor Papel De Parede Sala Varanda",
   price: "R$ 24,90",
 });
 
-export default function ProductCarousel() {
+export default function RelatedProducts() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ slidesToScroll: 4 });
 
   const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
   const scrollNext = () => emblaApi && emblaApi.scrollNext();
 
   return (
-    <div className={`${dmSans.className} bg-white p-8`}>
+    <div className={`${dmSans.className} bg-white pt-8`}>
+      <h2 className="text-2xl font-bold text-blue-900 mb-4">Também podem te interessar</h2>
       <div className="relative">
         <button
           className="absolute left-0 top-1/2 z-10 -translate-y-1/2 bg-transparent border-none p-0"
