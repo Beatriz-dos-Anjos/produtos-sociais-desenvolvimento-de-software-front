@@ -4,7 +4,9 @@ import { Pagination } from "@/components/Pagination";
 import { SidebarFilter } from "@/components/SideBarFilter";
 import ProductCard from "@/components/ProductCard";
 import type { Product } from "@/components/ProductCard";
-
+import Header from "@/components/ui/headerNotLogged"
+import Footer from "@/components/ui/footer";
+ 
 // Sample product data
 const products: Product[] = [
   {
@@ -67,8 +69,10 @@ const products: Product[] = [
 
 export default function Page() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex flex-col space-y-4">
+
+    <>
+      <Header />
+      <div className="flex flex-col space-y-4 px-4 py-8">
         {/* Search Bar and Title */}
         <div className="flex flex-col sm:flex-row gap-8 items-center mb-4">
           <div className="w-full sm:w-auto">
@@ -82,6 +86,7 @@ export default function Page() {
             Nossos produtos
           </h1>
         </div>
+
 
         <div className="flex flex-col md:flex-row gap-8">
           {/* Side Filter */}
@@ -108,6 +113,7 @@ export default function Page() {
           </main>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
