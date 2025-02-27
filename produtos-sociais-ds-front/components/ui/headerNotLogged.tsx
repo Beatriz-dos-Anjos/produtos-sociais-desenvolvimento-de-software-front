@@ -9,9 +9,7 @@ const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
 const menuItems = [
   { href: "/Marketplace", label: "Serviços" },
-  { href: "/login", label: "Cadastrar ONG" },
   { href: "/home", label: "Quem Somos" },
-  { href: "/contato", label: "Contato" },
 ];
 
 export default function Header() {
@@ -48,7 +46,7 @@ export default function Header() {
             href="/login"
             className="text-xs font-normal text-[#6366F1] bg-white px-4 py-1.5 rounded hover:bg-white/90 transition-colors"
           >
-            Entrar
+            Cadastrar ONG
           </Link>
         </div>
 
@@ -78,11 +76,11 @@ export default function Header() {
               </Link>
             ))}
             <Link
-              href="/entrar"
+              href="/login"
               className="text-xs font-normal text-[#6366F1] bg-white px-4 py-1.5 rounded hover:bg-white/90 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Entrar
+              Cadastrar ONG
             </Link>
           </nav>
         </div>
