@@ -53,7 +53,13 @@ const ModalDelete: React.FC<ModalDeleteProps> = ({ onClose, handleDelete }) => {
             justifyContent: "center",
           }}
         >
-          <Button onClick={handleDelete}>Sim</Button>
+          <Button
+            onClick={() => {
+              handleDelete();
+            }}
+          >
+            Sim
+          </Button>{" "}
           <Button onClick={onClose}>Não</Button>
         </div>
       </div>

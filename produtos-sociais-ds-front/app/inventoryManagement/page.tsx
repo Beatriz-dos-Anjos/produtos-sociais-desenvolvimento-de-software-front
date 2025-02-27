@@ -12,15 +12,6 @@ import ModalDelete from "./modal";
 
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
-const products = Array(10).fill({
-  image: "/artesanato2.jpg",
-  title: "Conjunto de bacias de palha",
-  price: "R$24,90",
-  stock: "9",
-  artisan: "Aline Brito",
-  status: "Ativo",
-});
-
 export default function GerenciamentoDeEstoque() {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 10;
@@ -30,11 +21,22 @@ export default function GerenciamentoDeEstoque() {
   const handleModal = (index: number | null) => {
     setItem(index);
   };
+  const [products, setProducts] = useState(
+    Array(10).fill({
+      image: "/artesanato2.jpg",
+      title: "Conjunto de bacias de palha",
+      price: "R$24,90",
+      stock: "9",
+      artisan: "Aline Brito",
+      status: "Ativo",
+    }),
+  );
 
   const deleteItems = (index: number) => {
-    products.splice(index, 1);
+    setProducts((prevProducts) => prevProducts.filter((_, i) => i !== index));
+    setItem(null);
+    router.push("/inventoryManagement");
   };
-
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
