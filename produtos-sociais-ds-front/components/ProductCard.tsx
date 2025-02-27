@@ -14,11 +14,12 @@ export interface ProductCardProps {
   onClick?: () => void;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, onClick }: ProductCardProps) {
   return (
     <Card
       className="overflow-hidden transition-all duration-300 ease-in-out cursor-pointer
                  hover:scale-105 hover:shadow-lg group"
+      onClick={onClick}
     >
       <CardContent className="p-0">
         <div className="aspect-square relative">
