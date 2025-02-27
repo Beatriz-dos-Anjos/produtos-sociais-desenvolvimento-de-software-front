@@ -11,6 +11,7 @@ export interface Product {
 
 export interface ProductCardProps {
   product: Product;
+  onClick?: () => void;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {

@@ -89,7 +89,7 @@ const ModalEntry: React.FC = () => {
             </div>
             <Button
               className={`w-[152px] h-[35px] bg-[#6672FA] text-white rounded-[4px] ml-24 mt-10 ${dmSans.className}`}
-              onClick={() => router.push("/Marketplace")}
+              onClick={() => router.push("/inventoryManagement")}
             >
               Entrar
             </Button>

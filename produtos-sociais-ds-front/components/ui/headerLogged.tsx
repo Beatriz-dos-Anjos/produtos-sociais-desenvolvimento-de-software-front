@@ -5,17 +5,13 @@ import Image from "next/image";
 import { DM_Sans } from "next/font/google";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import NotificationDropdown from "../notification-dropdown";
 
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
-const menuItems = [
-  { href: "/produtos", label: "Meus produtos" },
-  { href: "/notificacoes", label: "Notificações" },
-  { href: "/configuracoes", label: "Configurações" },
-];
-
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
 
   return (
     <header
@@ -34,15 +30,27 @@ export default function Header() {
 
         <div className="hidden lg:flex items-center gap-6">
           <nav className="flex items-center gap-6">
-            {menuItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-sm font-medium text-white hover:text-white/80"
-              >
-                {item.label}
-              </Link>
-            ))}
+            <Link
+              href="/Marketplace"
+              className="text-sm font-medium text-white hover:text-white/80"
+            >
+              Meus produtos
+            </Link>
+
+            {/* Clique no nome "Notificações" abre o dropdown */}
+            <button
+              className="text-sm font-medium text-white hover:text-white/80"
+              onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
+            >
+              Notificações
+            </button>
+
+            <Link
+              href="/configuracoes"
+              className="text-sm font-medium text-white hover:text-white/80"
+            >
+              Configurações
+            </Link>
           </nav>
 
           <Link
@@ -70,20 +78,43 @@ export default function Header() {
         </button>
       </div>
 
+      {/* Dropdown de Notificações aparece abaixo do botão */}
+      {isNotificationsOpen && (
+        <div className="absolute right-10 top-14 z-50">
+          <NotificationDropdown
+            closeDropdown={() => setIsNotificationsOpen(false)}
+          />
+        </div>
+      )}
+
+      {/* Menu Mobile */}
       {isMenuOpen && (
         <div className="lg:hidden absolute top-full left-0 right-0 bg-[#6672FA] shadow-lg z-50">
           <nav className="flex flex-col items-center gap-4 py-4">
-            {menuItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-sm font-medium text-white hover:text-white/80"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
+            <Link
+              href="/Marketplace"
+              className="text-sm font-medium text-white hover:text-white/80"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Meus produtos
+            </Link>
+
+            <button
+              className="text-sm font-medium text-white hover:text-white/80"
+              onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
+            >
+              Notificações
+            </button>
           </nav>
+
+          {isNotificationsOpen && (
+            <div className="w-full flex justify-center py-2">
+              <NotificationDropdown
+                closeDropdown={() => setIsNotificationsOpen(false)}
+              />
+            </div>
+          )}
+
           <Link
             href="/perfil"
             className="flex flex-col items-center hover:opacity-80 transition-opacity py-4"

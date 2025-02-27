@@ -6,7 +6,7 @@ import ProductCard from "@/components/ProductCard";
 import type { Product } from "@/components/ProductCard";
 import Header from "@/components/ui/headerNotLogged";
 import Footer from "@/components/ui/footer";
-
+import { useRouter } from "next/navigation";
 // Sample product data
 const products: Product[] = [
   {
@@ -68,6 +68,7 @@ const products: Product[] = [
 ];
 
 export default function Page() {
+  const router = useRouter();
   return (
     <>
       <Header />
@@ -96,7 +97,11 @@ export default function Page() {
           <main className="flex-1">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {products.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onClick={() => router.push("/productDetails")}
+                />
               ))}
             </div>
 

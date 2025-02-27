@@ -51,7 +51,7 @@ export default function ProductCarousel() {
                 </p>
                 <Button
                   className="mt-4 bg-[#6672FA] text-white"
-                  onClick={() => router.push("/inventoryManagement")}
+                  onClick={() => router.push("/Marketplace")}
                 >
                   Eu quero!
                 </Button>
