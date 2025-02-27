@@ -1,3 +1,4 @@
+"use client";
 import Header from "@/components/ui/headerNotLogged";
 import logo from "../../public/logo.svg";
 import Image from "next/image";
@@ -7,8 +8,21 @@ import { Button } from "@/components/ui/button";
 import ProductCarousel from "@/components/ui/carousel";
 import participantOngs from "../../public/participantOngs.svg";
 import Footer from "@/components/ui/footer";
+import { useRouter } from "next/navigation";
+import ModalExplain from "./modal";
+import { useState } from "react";
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
 export default function Home() {
+  const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  function handleOpenModal() {
+    setIsModalOpen(true);
+  }
+
+  function handleCloseModal() {
+    setIsModalOpen(false);
+  }
   return (
     <div className="flex flex-col gap-4 ">
       <Header />
@@ -31,6 +45,7 @@ export default function Home() {
           <div className="flex ml-40">
             <Button
               className={`w-[142px] h-[35px] bg-[#6672FA] text-white rounded-[4px] ${dmSans.className}`}
+              onClick={() => router.push("/Marketplace")}
             >
               Compre agora
             </Button>
@@ -66,9 +81,37 @@ export default function Home() {
             {" "}
             <Button
               className={`w-[142px] h-[35px] bg-[#6672FA] text-white rounded-[4px]${dmSans.className}`}
+              onClick={handleOpenModal}
             >
               Saber mais
             </Button>
+            {isModalOpen && (
+              <ModalExplain isOpen={isModalOpen} onClose={handleCloseModal}>
+                <h4
+                  style={{
+                    textAlign: "center",
+                    fontFamily: dmSans.style.fontFamily,
+                    fontSize: "1.25rem",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Sobre a Iniciativa
+                </h4>
+                <p
+                  style={{
+                    fontFamily: dmSans.style.fontFamily,
+                    fontSize: "1.05rem",
+                    marginTop: "1rem",
+                    color: "black",
+                  }}
+                >
+                  O Bora Impactar é uma iniciativa inovadora que visa conectar
+                  artesãos de ONGs a consumidores que valorizam o trabalho feito
+                  à mão. Nosso objetivo é incentivar a economia criativa e
+                  proporcionar oportunidades justas para pequenos produtores.
+                </p>
+              </ModalExplain>
+            )}
           </div>
         </div>
         <div style={{ display: "flex", marginLeft: "26rem" }}>

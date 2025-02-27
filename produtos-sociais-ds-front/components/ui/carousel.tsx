@@ -4,7 +4,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { DM_Sans } from "next/font/google";
-
+import { useRouter } from "next/navigation";
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
 const products = Array(5).fill({
@@ -15,7 +15,7 @@ const products = Array(5).fill({
 
 export default function ProductCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ slidesToScroll: 4 });
-
+  const router = useRouter();
   const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
   const scrollNext = () => emblaApi && emblaApi.scrollNext();
 
@@ -55,7 +55,10 @@ export default function ProductCarousel() {
                 <p className="text-[#1E293B] font-semibold mt-2">
                   {product.price}
                 </p>
-                <Button className="mt-4 bg-[#6672FA] text-white">
+                <Button
+                  className="mt-4 bg-[#6672FA] text-white"
+                  onClick={() => router.push("/inventoryManagement")}
+                >
                   Eu quero!
                 </Button>
               </div>
