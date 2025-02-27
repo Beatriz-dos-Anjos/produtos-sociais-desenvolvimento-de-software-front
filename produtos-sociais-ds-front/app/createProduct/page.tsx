@@ -6,12 +6,13 @@ import { Input } from "@/components/ui/input";
 import UploadImage from "@/components/uploadComponent";
 import { useState } from "react";
 import { Dropdown } from "@/components/dropdown";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
 export default function CreateProduct() {
   const [imageUrl, setImageUrl] = useState<string>();
-
+  const router = useRouter();
   const handleFileSelect = (file: File) => {
     const url = URL.createObjectURL(file);
     setImageUrl(url);
@@ -169,6 +170,7 @@ export default function CreateProduct() {
       </div>
       <Button
         className={`w-[242px] h-[42px] bg-[#6672FA] text-white rounded-[4px] mt-6`}
+        onClick={() => router.push("/home")}
       >
         Adicionar Produto
       </Button>

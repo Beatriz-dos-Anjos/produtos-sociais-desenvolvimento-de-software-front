@@ -27,12 +27,15 @@ export default function Footer() {
           <h3 className="font-semibold text-base mb-4">Portal</h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link href="/" className="hover:underline hover:opacity-80">
+              <Link
+                href="/Marketplace"
+                className="hover:underline hover:opacity-80"
+              >
                 Área de compras
               </Link>
             </li>
             <li>
-              <Link href="/" className="hover:underline hover:opacity-80">
+              <Link href="/home" className="hover:underline hover:opacity-80">
                 Quem somos
               </Link>
             </li>
@@ -54,7 +57,7 @@ export default function Footer() {
             Siga as nossas redes!
           </h3>
           <div className="flex justify-center space-x-4">
-            <Link href="/">
+            <Link href="https://x.com/prefrecife">
               <Image
                 src="/XLogo.svg"
                 alt="X"
@@ -63,7 +66,7 @@ export default function Footer() {
                 className="hover:scale-110 transition-transform"
               />
             </Link>
-            <Link href="/">
+            <Link href="https://www.instagram.com/prefeiturarecife/?hl=pt-br">
               <Image
                 src="/InstagramLogo.svg"
                 alt="Instagram"
@@ -72,7 +75,7 @@ export default function Footer() {
                 className="hover:scale-110 transition-transform"
               />
             </Link>
-            <Link href="/">
+            <Link href="https://www.youtube.com/prefrecife">
               <Image
                 src="/YoutubeLogo.svg"
                 alt="YouTube"
@@ -81,7 +84,7 @@ export default function Footer() {
                 className="hover:scale-110 transition-transform"
               />
             </Link>
-            <Link href="/">
+            <Link href="https://br.linkedin.com/company/prefrecife">
               <Image
                 src="/LinkedinLogo.svg"
                 alt="LinkedIn"

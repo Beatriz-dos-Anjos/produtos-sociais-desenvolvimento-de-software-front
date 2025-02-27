@@ -8,9 +8,9 @@ import { useState } from "react";
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
 const menuItems = [
-  { href: "/servicos", label: "Serviços" },
-  { href: "/cadastrar-ong", label: "Cadastrar ONG" },
-  { href: "/quem-somos", label: "Quem Somos" },
+  { href: "/Marketplace", label: "Serviços" },
+  { href: "/login", label: "Cadastrar ONG" },
+  { href: "/home", label: "Quem Somos" },
   { href: "/contato", label: "Contato" },
 ];
 
