@@ -22,7 +22,9 @@ export default function RelatedProducts() {
 
   return (
     <div className={`${dmSans.className} bg-white pt-8`}>
-      <h2 className="text-2xl font-bold text-blue-900 mb-4">Também podem te interessar</h2>
+      <h2 className="text-2xl font-bold text-blue-900 mb-4">
+        Também podem te interessar
+      </h2>
       <div className="relative">
         <button
           className="absolute left-0 top-1/2 z-10 -translate-y-1/2 bg-transparent border-none p-0"

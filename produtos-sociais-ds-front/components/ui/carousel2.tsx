@@ -1,30 +1,37 @@
-"use client"
+/* eslint-disable @next/next/no-img-element */
+"use client";
 
-import { useState, useEffect, useCallback } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useState, useEffect, useCallback } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Carousel2Props {
-  images: string[]
+  images: string[];
 }
 
 export function Carousel2({ images }: Carousel2Props) {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
-  }, [images.length])
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  }, [images.length]);
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
-  }
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length,
+    );
+  };
 
   useEffect(() => {
-    const interval = setInterval(nextSlide, 5000) // Auto-advance every 5 seconds
-    return () => clearInterval(interval)
-  }, [nextSlide])
+    const interval = setInterval(nextSlide, 5000); // Auto-advance every 5 seconds
+    return () => clearInterval(interval);
+  }, [nextSlide]);
 
   return (
-    <div id="controls-carousel" className="relative w-full" data-carousel="static">
+    <div
+      id="controls-carousel"
+      className="relative w-full"
+      data-carousel="static"
+    >
       <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
         {images.map((image, index) => (
           <div
@@ -63,6 +70,5 @@ export function Carousel2({ images }: Carousel2Props) {
         </span>
       </button>
     </div>
-  )
+  );
 }
-
