@@ -8,6 +8,7 @@ import { useState } from "react";
 import Header from "@/components/ui/headerLogged";
 import Footer from "@/components/ui/footer";
 import { useRouter } from "next/navigation";
+import ModalDelete from "./modal";
 
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
@@ -24,6 +25,15 @@ export default function GerenciamentoDeEstoque() {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 10;
   const router = useRouter();
+  const [excludeItem, setItem] = useState<number | null>(null);
+
+  const handleModal = (index: number | null) => {
+    setItem(index);
+  };
+
+  const deleteItems = (index: number) => {
+    products.splice(index, 1);
+  };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -83,9 +93,21 @@ export default function GerenciamentoDeEstoque() {
                   <button className="flex-1 py-1.5 px-3 border border-[#6672FA] text-[#6672FA] text-sm rounded hover:bg-[#6672FA] hover:text-white transition-colors">
                     Editar
                   </button>
-                  <button className="flex-1 py-1.5 px-3 bg-[#FA4A57] text-white text-sm rounded hover:bg-[#D1303E] transition-colors">
+                  <button
+                    className="flex-1 py-1.5 px-3 bg-[#FA4A57] text-white text-sm rounded hover:bg-[#D1303E] transition-colors"
+                    onClick={() => handleModal(index)}
+                  >
                     Excluir
                   </button>
+                  {excludeItem !== null && (
+                    <ModalDelete
+                      onClose={() => handleModal(null)}
+                      handleDelete={() => {
+                        deleteItems(excludeItem);
+                        router.push("/inventoryManagement");
+                      }}
+                    />
+                  )}
                 </div>
               </div>
             ))}
