@@ -44,13 +44,6 @@ export default function Header() {
             >
               Notificações
             </button>
-
-            <Link
-              href="/configuracoes"
-              className="text-sm font-medium text-white hover:text-white/80"
-            >
-              Configurações
-            </Link>
           </nav>
 
           <Link
