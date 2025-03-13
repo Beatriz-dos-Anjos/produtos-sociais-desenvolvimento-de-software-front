@@ -6,6 +6,9 @@ import Image from "next/image";
 import { DM_Sans } from "next/font/google";
 import { useRouter } from "next/navigation";
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
+jest.mock("next/font/google", () => ({
+  DM_Sans: jest.fn(() => ({ className: "mocked-font" })),
+}));
 
 const products = Array(5).fill({
   image: "/artesanato2.jpg",
