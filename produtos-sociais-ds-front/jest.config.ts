@@ -10,7 +10,7 @@ const createJestConfig = nextJest({
 const config: Config = {
   coverageProvider: "v8",
   testEnvironment: "jsdom",
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"], // 🔥 Corrigido para referenciar o arquivo de setup corretamente
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
 
   transformIgnorePatterns: ["/node_modules/(?!lucide-react)"],
 
