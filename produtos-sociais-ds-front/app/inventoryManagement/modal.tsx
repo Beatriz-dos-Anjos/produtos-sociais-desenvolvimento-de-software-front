@@ -3,7 +3,6 @@ import React from "react";
 
 import { Button } from "@/components/ui/button";
 import { DM_Sans } from "next/font/google";
-import { useRouter } from "next/navigation";
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
 interface ModalDeleteProps {
   onClose: () => void;
