@@ -39,16 +39,6 @@ export default function Footer() {
                 Quem somos
               </Link>
             </li>
-            <li>
-              <Link href="/" className="hover:underline hover:opacity-80">
-                Serviços
-              </Link>
-            </li>
-            <li>
-              <Link href="/" className="hover:underline hover:opacity-80">
-                Contato
-              </Link>
-            </li>
           </ul>
         </div>
 

@@ -92,9 +92,6 @@ export default function GerenciamentoDeEstoque() {
                   <p className="text-[#3340FA]">Status: {product.status}</p>
                 </div>
                 <div className="flex gap-2">
-                  <button className="flex-1 py-1.5 px-3 border border-[#6672FA] text-[#6672FA] text-sm rounded hover:bg-[#6672FA] hover:text-white transition-colors">
-                    Editar
-                  </button>
                   <button
                     className="flex-1 py-1.5 px-3 bg-[#FA4A57] text-white text-sm rounded hover:bg-[#D1303E] transition-colors"
                     onClick={() => handleModal(index)}
