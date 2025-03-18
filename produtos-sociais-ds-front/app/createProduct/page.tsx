@@ -106,36 +106,56 @@ export default function CreateProduct() {
           />
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-4 w-full max-w-2xl">
-        <div className="w-full">
-          <Dropdown
-            label="ONGs Afiliadas"
-            placeholder="Placeholder"
-            items={dropdownOngs}
-          />
-        </div>
-        <div className="w-full">
-          <Dropdown
-            label="Unidades Disponíveis"
-            placeholder="Placeholder"
-            items={dropdownUnidades}
-          />
-        </div>
-        <div className="relative w-full mt-6">
-          <label
-            htmlFor="preco"
-            className="absolute -top-2.5 left-3 bg-white px-1 text-sm text-gray-600"
-          >
-            Preço
-          </label>
-          <Input
-            type="text"
-            id="preco"
-            placeholder="R$ 0,00"
-            className="w-full rounded-md border border-gray-300 px-3 py-3 text-gray-600 focus:border-gray-400 focus:outline-none focus:ring-0"
-          />
-        </div>
+      <div className="grid grid-cols-3 gap-4 w-full max-w-2xl items-center">
+      {/* Campo para ONGs Afiliadas */}
+      <div className="relative w-full">
+        <label
+          htmlFor="ongs-afiliadas"
+          className="absolute -top-2.5 left-3 bg-white px-1 text-sm text-gray-600"
+        >
+          ONGs Afiliadas
+        </label>
+        <input
+          id="ongs-afiliadas"
+          type="text"
+          placeholder="Nome da ONG"
+          className="w-full border rounded-md px-3 py-2 text-gray-700"
+        />
       </div>
+
+      {/* Campo para Estoque Disponível */}
+      <div className="relative w-full">
+        <label
+          htmlFor="estoque-disponivel"
+          className="absolute -top-2.5 left-3 bg-white px-1 text-sm text-gray-600"
+        >
+          Estoque Disponível
+        </label>
+        <input
+          id="estoque-disponivel"
+          type="text"
+          placeholder="Quantidade"
+          className="w-full border rounded-md px-3 py-2 text-gray-700"
+        />
+      </div>    
+
+      {/* Campo para Preço */}
+      <div className="relative w-full">
+        <label
+          htmlFor="preco"
+          className="absolute -top-2.5 left-3 bg-white px-1 text-sm text-gray-600"
+        >
+          Preço
+        </label>
+        <Input
+          type="text"
+          id="preco"
+          placeholder="R$ 0,00"
+          className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-600 focus:border-gray-400 focus:outline-none focus:ring-0"
+        />
+      </div>
+    </div>
+
       <div className="relative w-full max-w-2xl mt-3">
         <div className="relative">
           <label
