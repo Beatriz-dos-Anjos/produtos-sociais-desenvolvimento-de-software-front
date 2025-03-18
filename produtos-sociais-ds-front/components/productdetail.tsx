@@ -28,28 +28,8 @@ export function ProductDetail({ product }: ProductDetailProps) {
       <div className="container mx-auto px-4 py-8">
         {/* Breadcrumb */}
         <nav className="flex items-center space-x-2 mb-8 text-sm">
-          <Link href="/" className="text-blue-600 hover:underline">
+          <Link href="/Marketplace" className="text-blue-600 hover:underline">
             Voltar
-          </Link>
-          <span className="text-gray-400">&gt;</span>
-          <Link href="/pernambuco" className="text-gray-600 hover:underline">
-            Pernambuco
-          </Link>
-          <span className="text-gray-400">&gt;</span>
-          <Link href="/grande-recife" className="text-gray-600 hover:underline">
-            Grande Recife
-          </Link>
-          <span className="text-gray-400">&gt;</span>
-          <Link href="/decoracao" className="text-gray-600 hover:underline">
-            Decoração
-          </Link>
-          <span className="text-gray-400">&gt;</span>
-          <Link href="/recife" className="text-gray-600 hover:underline">
-            Recife
-          </Link>
-          <span className="text-gray-400">&gt;</span>
-          <Link href="/caxanga" className="text-gray-600 hover:underline">
-            Caxangá
           </Link>
         </nav>
 
@@ -90,9 +70,18 @@ export function ProductDetail({ product }: ProductDetailProps) {
             <Button
               className="w-full bg-[#6672FA] text-white hover:bg-[#5f6ae3] transition-colors duration-300"
               size="lg"
+              onClick={() =>
+                window.open(
+                  "https://wa.me/https://api.whatsapp.com/send?1=pt_BR&phone=5500000000000",
+                )
+              }
             >
               Entrar em contato no WhatsApp
             </Button>
+            <small>
+              Obs: adicionar o telefone de contato na url de direcionamento, no
+              lugar dos números 0 (zero)
+            </small>
           </div>
         </div>
       </div>
