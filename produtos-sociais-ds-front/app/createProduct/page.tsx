@@ -9,10 +9,11 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
-import api from "@/services/api"; // 🔹 Mantendo a conexão com o back-end
+import api from "@/services/api"; 
 
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
+//Formato dos dados dos produtos (verificar imagem)
 type ProductFormData = {
   nome: string;
   artesao: string;
@@ -26,7 +27,7 @@ type ProductFormData = {
 
 export default function CreateProduct() {
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imageUrl, setImageUrl] = useState<string | null>(null); // Para visualização da imagem
+  const [imageUrl, setImageUrl] = useState<string | null>(null); 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const router = useRouter();
@@ -37,24 +38,24 @@ export default function CreateProduct() {
     formState: { errors },
   } = useForm<ProductFormData>();
 
-  // 🔹 Mantém a lógica de upload sem alterar o front
 const handleFileSelect = (file: File) => {
-  // 🔍 Valida se o arquivo é uma imagem JPG ou PNG
+  
   if (!file.type.startsWith("image/")) {
     alert("Por favor, selecione um arquivo de imagem válido (JPG ou PNG).");
     return;
   }
 
-  // 🔍 Valida o tamanho do arquivo (exemplo: 2MB)
+  
   if (file.size > 2 * 1024 * 1024) {
     alert("O arquivo é muito grande! Escolha uma imagem de até 2MB.");
     return;
   }
 
   setImageFile(file);
-  setImageUrl(URL.createObjectURL(file)); // ✅ Permite pré-visualização
+  setImageUrl(URL.createObjectURL(file)); 
 };
 
+  // Função para converter a imagem em 64
   const convertImageToBase64 = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -64,7 +65,7 @@ const handleFileSelect = (file: File) => {
     });
   };
   
-  // 🔹 Função para enviar os dados ao back-end
+  
   const onSubmit = async (data: ProductFormData) => {
     try {
       setIsSubmitting(true);
@@ -72,10 +73,10 @@ const handleFileSelect = (file: File) => {
   
       let pictureBase64 = "";
       if (imageFile) {
-        pictureBase64 = await convertImageToBase64(imageFile); // Converte a imagem para base64
+        pictureBase64 = await convertImageToBase64(imageFile);
       }
   
-      // Criando um objeto JSON para enviar os dados
+    
       const productData = {
         productName: data.nome,
         craftsmanName: data.artesao,
@@ -85,13 +86,13 @@ const handleFileSelect = (file: File) => {
         category: data.categoria,
         price: parseFloat(data.preco),
         description: data.descricao,
-        picture: pictureBase64, // ✅ Agora a imagem será enviada como base64
+        picture: pictureBase64, 
       };
   
-      // 🔹 Pegando o token salvo no localStorage
+      // Resgata o token
       const token = localStorage.getItem("token");
   
-      // 🔹 Enviando os dados para o back-end como JSON
+      // Faz a requisição
       const response = await api.post("/products", productData, {
         headers: {
           "Content-Type": "application/json", // ✅ Agora enviamos JSON corretamente
@@ -101,7 +102,7 @@ const handleFileSelect = (file: File) => {
   
       console.log("Produto cadastrado com sucesso:", response.data);
   
-      // 🔹 Redirecionar para a página inicial após o cadastro
+      // Redirecionamento pra home
       router.push("/home");
     } catch (error) {
       console.error("Erro ao cadastrar produto:", error);
@@ -122,6 +123,7 @@ const handleFileSelect = (file: File) => {
       </div>
       
       <form onSubmit={handleSubmit(onSubmit)} className="relative w-full max-w-2xl">
+        
         <div className="relative mt-9">
           <label htmlFor="nome-produto" className="absolute -top-2.5 left-3 bg-white px-1 text-sm text-gray-600">
             Nome do Produto
