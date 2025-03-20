@@ -46,17 +46,7 @@ export default function Header() {
             </button>
           </nav>
 
-          <Link
-            href="/perfil"
-            className="flex flex-col items-center hover:opacity-80 transition-opacity"
-          >
-            <div className="h-8 w-8 flex items-center justify-center rounded-full bg-[#B7E3FF] text-[#6672FA] font-bold text-xs">
-              M
-            </div>
-            <span className="text-xs font-medium text-white mt-1">
-              Meu Perfil
-            </span>
-          </Link>
+          
         </div>
 
         <button
@@ -108,17 +98,7 @@ export default function Header() {
             </div>
           )}
 
-          <Link
-            href="/perfil"
-            className="flex flex-col items-center hover:opacity-80 transition-opacity py-4"
-          >
-            <div className="h-8 w-8 flex items-center justify-center rounded-full bg-[#B7E3FF] text-[#6672FA] font-bold text-xs">
-              M
-            </div>
-            <span className="text-xs font-medium text-white mt-1">
-              Meu Perfil
-            </span>
-          </Link>
+          
         </div>
       )}
     </header>
