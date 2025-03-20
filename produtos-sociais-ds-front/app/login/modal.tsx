@@ -11,31 +11,32 @@ const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
 const ModalEntry: React.FC = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [password, setPassword] = useState("");
   const [erro, setErro] = useState("");
 
   const handleLogin = async () => {
     setErro("");
     try {
-      const response = await fetch("/api/login", {
+      const response = await fetch("http://localhost:3000/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, senha }),
+        body: JSON.stringify({ email, password }), // Changed 'senha' to 'password'
+        credentials: "include", // Important for cookies
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem("token", data.token);
+        // The backend sets an HTTP-only cookie, so you don't need to store the token
         router.push("/inventoryManagement");
       } else {
-        setErro(data.mensagem || "Credenciais inválidas.");
+        setErro(data.error || "Credenciais inválidas.");
       }
-    } catch {
+    } catch (error) {
+      console.error(error);
       setErro("Erro ao conectar com o servidor.");
     }
   };
-
   return (
     <div
       style={{
@@ -113,8 +114,8 @@ const ModalEntry: React.FC = () => {
                   type="password"
                   id="password"
                   placeholder="Ex: ••••••••"
-                  value={senha}
-                  onChange={(e) => setSenha(e.target.value)}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="w-full rounded-md border border-gray-300 px-3 py-3 text-gray-600 focus:border-gray-400 focus:outline-none focus:ring-0"
                   required
                 />
