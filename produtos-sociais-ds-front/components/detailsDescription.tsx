@@ -1,13 +1,11 @@
 interface DescriptionProps {
   category: string;
   ong: string;
-  region: string;
 }
 
 export function DetailsDescription({
   category,
   ong,
-  region,
 }: DescriptionProps) {
   return (
     <div className="mt-6">
@@ -20,10 +18,6 @@ export function DetailsDescription({
         <div>
           <span className="font-semibold text-blue-900">ONG</span>
           <p className="text-blue-600">{ong}</p>
-        </div>
-        <div>
-          <span className="font-semibold text-blue-900">Região</span>
-          <p className="text-blue-600">{region}</p>
         </div>
       </div>
     </div>

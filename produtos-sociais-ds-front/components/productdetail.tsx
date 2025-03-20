@@ -11,20 +11,21 @@ const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
 interface ProductDetailProps {
   product: {
-    name: string;
-    price: number;
-    maker: string;
-    ong: string;
-    contact: string;
-    images: string[];
-    description: string;
+    productName: string;
+    craftsmanName: string;
     category: string;
-    region: string;
+    picture: string[];
+    whatsappNumber: number;
+    linkedONG: string;
+    units: number;
+    price: number;
+    description: string;
   };
 }
 
 export function ProductDetail({ product }: ProductDetailProps) {
   const [isLiked, setIsLiked] = useState(false);
+  const images = Array.isArray(product.picture) ? product.picture : [];
 
   return (
     <div className={`${dmSans.className} bg-white`}>
@@ -49,34 +50,36 @@ export function ProductDetail({ product }: ProductDetailProps) {
                 }`}
               />
             </button>
-            <Carousel2 images={product.images} />
+            {images.length > 0 ? (
+              <Carousel2 images={images} />
+            ) : (
+              <p className="text-gray-500 text-center">Sem imagens disponíveis</p>
+            )}
           </div>
 
           {/* Product Info */}
           <div className="space-y-6">
-            <h1 className="text-3xl font-semibold">{product.name}</h1>
+            <h1 className="text-3xl font-semibold">{product.productName}</h1>
 
             <div className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
               10% de desconto no pix
             </div>
 
             <div className="text-3xl font-bold">
-              R$ {product.price.toFixed(2).replace(".", ",")}
+              R$ {Number(product.price).toFixed(2)}
             </div>
 
             <div className="space-y-2 text-gray-600">
-              <p>Feito por: {product.maker}</p>
-              <p>ONG Responsável: {product.ong}</p>
-              <p>Contato: {product.contact}</p>
+              <p>Feito por: {product.craftsmanName}</p>
+              <p>ONG Responsável: {product.linkedONG}</p>
+              <p>Contato: {product.whatsappNumber}</p>
             </div>
 
             <Button
               className="w-full bg-[#6672FA] text-white hover:bg-[#5f6ae3] transition-colors duration-300"
               size="lg"
               onClick={() =>
-                window.open(
-                  "https://wa.me/https://api.whatsapp.com/send?1=pt_BR&phone=5500000000000",
-                )
+                window.open(`https://wa.me/${String(product.whatsappNumber).replace(/\D/g, "")}`)
               }
             >
               Entrar em contato no WhatsApp

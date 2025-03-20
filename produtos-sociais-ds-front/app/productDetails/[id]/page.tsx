@@ -16,16 +16,15 @@ import { Separator } from "@/components/ui/separator";
 
 // Definindo a interface Product com as propriedades que esperamos
 interface Product {
-  id: number;
-  name: string;
-  price: number;
-  maker: string;
-  ong: string;
-  contact: string;
-  images: string[];
-  description: string;
+  productName: string;
+  craftsmanName: string;
   category: string;
-  region: string;
+  picture: string[];
+  whatsappNumber: number;
+  linkedONG: string;
+  units: number;
+  price: number;
+  description: string;
 }
 
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
@@ -71,8 +70,7 @@ export default function ProductPage() {
         <Separator />
         <DetailsDescription
           category={product.category}
-          ong={product.ong}
-          region={product.region}
+          ong={product.linkedONG}
         />
         <Separator />
         <RelatedProducts />
