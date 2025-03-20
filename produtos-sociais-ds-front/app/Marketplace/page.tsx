@@ -15,7 +15,7 @@ interface ApiProduct {
   productName: string;
   craftsmanName: string;
   category: string;
-  picture: string; // Base64 da imagem
+  picture: string;
   whatsappNumber: string;
   linkedONG: string;
   avalible: boolean;
@@ -27,66 +27,57 @@ interface ApiProduct {
 export default function Page() {
   const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
+  const [allProducts, setAllProducts] = useState<ApiProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
-  const [priceFilter, setPriceFilter] = useState<number | null>(null);
+  const [priceFilter, setPriceFilter] = useState<number | null>(500);
   const [sizeFilter, setSizeFilter] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Estados para armazenar as opções de filtro disponíveis
+  const [categories, setCategories] = useState<string[]>([]);
+  const [sizes, setSizes] = useState<string[]>([]);
 
   const fetchProducts = async () => {
     try {
       setLoading(true);
 
-      // Definir a URL base
       let url = "http://localhost:3000/products";
 
-      if (categoryFilter) {
-        url = `http://localhost:3000/products/category/${categoryFilter}`;
-      } else if (priceFilter) {
-        url = `http://localhost:3000/products/price/${priceFilter}`;
-      } else if (sizeFilter) {
-        url = `http://localhost:3000/products/size/${sizeFilter}`;
+      // Construir os parâmetros de filtro dinamicamente
+      const queryParams = new URLSearchParams();
+      if (categoryFilter) queryParams.append("category", categoryFilter);
+      if (priceFilter) queryParams.append("price", priceFilter.toString());
+      if (sizeFilter) queryParams.append("size", sizeFilter);
+
+      if (queryParams.toString()) {
+        url += `?${queryParams.toString()}`;
       }
 
-      // Buscar produtos
-      const response = await fetch(url, {
-        credentials: "include",
-      });
+      const response = await fetch(url, { credentials: "include" });
 
       if (!response.ok) {
-        throw new Error("Falha ao carregar produtos");
+        throw new Error(`Erro HTTP: ${response.status}`);
       }
 
       const apiProducts: ApiProduct[] = await response.json();
 
-      // Calcular total de páginas
-      const itemsPerPage = 12;
-      const totalItems = apiProducts.length;
-      const calculatedTotalPages = Math.ceil(totalItems / itemsPerPage);
+      setAllProducts(apiProducts);
 
-      // Paginação
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      const paginatedProducts = apiProducts.slice(
-        startIndex,
-        startIndex + itemsPerPage,
-      );
+      // Extraindo categorias e tamanhos únicos
+      const uniqueCategories = [...new Set(apiProducts.map((p) => p.category))];
+      const uniqueSizes = [
+        ...new Set(apiProducts.filter((p) => p.size).map((p) => p.size || "")),
+      ];
 
-      // Mapear para o formato correto
-      const formattedProducts: Product[] = paginatedProducts.map((product) => ({
-        id: product.id,
-        name: product.productName,
-        price: Number(product.price),
-        image: product.picture || "/artesanato1.jpg",
-        category: product.category,
-      }));
-
-      setProducts(formattedProducts);
-      setTotalPages(calculatedTotalPages);
+      setCategories(uniqueCategories);
+      setSizes(uniqueSizes);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Erro ao buscar produtos");
       console.error("Erro ao buscar produtos:", err);
+      setError(err instanceof Error ? err.message : "Erro ao buscar produtos");
     } finally {
       setLoading(false);
     }
@@ -94,19 +85,78 @@ export default function Page() {
 
   useEffect(() => {
     fetchProducts();
-  }, [currentPage, categoryFilter, priceFilter, sizeFilter]);
+  }, []);
+
+  // 🔹 Filtro de produtos local (incluindo busca por nome)
+  useEffect(() => {
+    const filteredProducts = allProducts.filter((product) => {
+      return (
+        (!categoryFilter || product.category === categoryFilter) &&
+        (priceFilter === null || product.price <= priceFilter) &&
+        (!sizeFilter || product.size === sizeFilter) &&
+        (!searchTerm ||
+          product.productName.toLowerCase().includes(searchTerm.toLowerCase()))
+      );
+    });
+
+    // Paginação com limite de 8 produtos por página
+    const itemsPerPage = 8;
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const paginatedProducts = filteredProducts.slice(
+      startIndex,
+      startIndex + itemsPerPage
+    );
+
+    setProducts(
+      paginatedProducts.map((product) => ({
+        id: product.id,
+        name: product.productName,
+        price: Number(product.price),
+        image: product.picture || "/artesanato1.jpg",
+        category: product.category,
+      }))
+    );
+
+    const calculatedTotalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+    setTotalPages(calculatedTotalPages);
+
+    // 🔹 Garante que a página atual não ultrapasse o número de páginas disponíveis
+    if (currentPage > calculatedTotalPages) {
+      setCurrentPage(Math.max(1, calculatedTotalPages));
+    }
+  }, [allProducts, categoryFilter, priceFilter, sizeFilter, searchTerm, currentPage]);
 
   return (
     <>
       <Header />
       <div className="flex flex-col space-y-4 px-4 py-8">
         <div className="flex flex-col sm:flex-row gap-8 items-center mb-4">
-          <h1 className="text-2xl font-bold text-[#0B236D]">Nossos produtos</h1>
+          <div className="w-full sm:w-auto">
+            <input
+              type="search"
+              placeholder="Pesquisar..."
+              className="w-full sm:w-64 px-4 py-2 border rounded-lg"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+          <h1 className="text-2xl font-bold text-[#0B236D] mb-4 sm:mb-0">
+            Nossos produtos
+          </h1>
         </div>
 
         <div className="flex flex-col md:flex-row gap-8">
           <aside className="w-full md:w-64 flex-shrink-0">
-            <SidebarFilter />
+            <SidebarFilter
+              categoryFilter={categoryFilter}
+              setCategoryFilter={setCategoryFilter}
+              sizeFilter={sizeFilter}
+              setSizeFilter={setSizeFilter}
+              priceFilter={priceFilter}
+              setPriceFilter={setPriceFilter}
+              categories={categories}
+              sizes={sizes}
+            />
           </aside>
 
           <main className="flex-1">
@@ -114,6 +164,8 @@ export default function Page() {
               <p>Carregando produtos...</p>
             ) : error ? (
               <p className="text-red-500">{error}</p>
+            ) : products.length === 0 ? (
+              <p>Nenhum produto encontrado com os filtros atuais.</p>
             ) : (
               <>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -128,6 +180,7 @@ export default function Page() {
                   ))}
                 </div>
 
+                {/* 🔹 Paginação existente ajustada */}
                 <div className="mt-8 flex justify-center">
                   <Pagination
                     currentPage={currentPage}

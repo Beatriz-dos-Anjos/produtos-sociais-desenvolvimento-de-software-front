@@ -1,125 +1,112 @@
 "use client";
 
 import * as React from "react";
-import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { X } from "lucide-react";
 
+// Definir as interfaces para os tipos de filtro
 interface FilterOption {
   id: string;
+  value: string;
   label: string;
-  description?: string;
 }
 
 interface FilterSection {
   title: string;
+  type: 'category' | 'size';
   options: FilterOption[];
 }
 
-const filterTags = ["Spring", "Smart", "Modern"];
+interface SidebarFilterProps {
+  categoryFilter: string | null;
+  setCategoryFilter: (category: string | null) => void;
+  sizeFilter: string | null;
+  setSizeFilter: (size: string | null) => void;
+  priceFilter: number | null;
+  setPriceFilter: (price: number | null) => void;
+  categories: string[];
+  sizes: string[];
+}
 
-const filterSections: FilterSection[] = [
-  {
-    title: "Categorias",
-    options: [
-      {
-        id: "cat1",
-        label: "Label",
-        description: "Description",
-      },
-      {
-        id: "cat2",
-        label: "Label",
-        description: "Description",
-      },
-      {
-        id: "cat3",
-        label: "Label",
-        description: "Description",
-      },
-    ],
-  },
-  {
-    title: "Tamanho",
-    options: [
-      { id: "size1", label: "Label" },
-      { id: "size2", label: "Label" },
-      { id: "size3", label: "Label" },
-    ],
-  },
-  {
-    title: "Materiais",
-    options: [
-      { id: "size4", label: "Label" },
-      { id: "size5", label: "Label" },
-      { id: "size6", label: "Label" },
-    ],
-  },
-];
+export function SidebarFilter({
+  categoryFilter,
+  setCategoryFilter,
+  sizeFilter,
+  setSizeFilter,
+  priceFilter,
+  setPriceFilter,
+  categories = [],
+  sizes = []
+}: SidebarFilterProps) {
+  // Converter as categorias e tamanhos em opções de filtro
+  const filterSections: FilterSection[] = [
+    {
+      title: "Categorias",
+      type: 'category',
+      options: categories.map((category, index) => ({
+        id: `cat${index}`,
+        value: category,
+        label: category
+      }))
+    },
+    {
+      title: "Tamanho",
+      type: 'size',
+      options: sizes.map((size, index) => ({
+        id: `size${index}`,
+        value: size,
+        label: size
+      }))
+    }
+  ];
 
-export function SidebarFilter() {
-  const [selectedTags, setSelectedTags] = React.useState<string[]>(filterTags);
-  const [priceRange, setPriceRange] = React.useState([0, 100]);
-  const [selectedOptions, setSelectedOptions] = React.useState<string[]>([]);
+  // Valor do slider de preço (mínimo e máximo)
+  const [priceRange, setPriceRange] = React.useState([0, priceFilter || 500]);
 
-  const handleTagRemove = (tag: string) => {
-    setSelectedTags(selectedTags.filter((t) => t !== tag));
+  // Atualiza o filtro de preço quando o slider muda
+  const handlePriceChange = (value: number[]) => {
+    setPriceRange(value);
+    setPriceFilter(value[1]);
   };
 
-  const handleCheckboxChange = (checked: boolean, id: string) => {
-    setSelectedOptions(
-      checked
-        ? [...selectedOptions, id]
-        : selectedOptions.filter((item) => item !== id),
-    );
+  // Manipula a mudança de checkbox para categoria ou tamanho
+  const handleCheckboxChange = (checked: boolean, value: string, type: 'category' | 'size') => {
+    if (type === 'category') {
+      setCategoryFilter(checked ? value : null);
+    } else if (type === 'size') {
+      setSizeFilter(checked ? value : null);
+    }
   };
 
   return (
-    <div className="w-64 p-4 space-y-6">
-      <div>
-        <h2 className="text-sm font-medium mb-2">Filtro</h2>
-        <div className="flex flex-wrap gap-2">
-          {selectedTags.map((tag) => (
-            <Badge
-              key={tag}
-              variant="secondary"
-              className="flex items-center gap-1"
-            >
-              {tag}
-              <button
-                onClick={() => handleTagRemove(tag)}
-                className="hover:bg-muted rounded-full"
-              >
-                <X className="h-3 w-3" />
-              </button>
-            </Badge>
-          ))}
-        </div>
-      </div>
-
+    <div className="w-full p-4 space-y-6 border rounded-lg bg-white">
       {filterSections.map((section) => (
         <div key={section.title} className="space-y-4">
           <h3 className="text-sm font-medium">{section.title}</h3>
           <div className="space-y-3">
             {section.options.map((option) => (
-              <div key={option.id} className="flex items-start space-x-2">
+              <div key={option.id} className="flex items-center space-x-2">
                 <Checkbox
                   id={option.id}
-                  checked={selectedOptions.includes(option.id)}
+                  checked={
+                    section.type === 'category' 
+                      ? categoryFilter === option.value
+                      : sizeFilter === option.value
+                  }
                   onCheckedChange={(checked) =>
-                    handleCheckboxChange(checked as boolean, option.id)
+                    handleCheckboxChange(
+                      checked as boolean, 
+                      option.value,
+                      section.type
+                    )
                   }
                 />
-                <div className="grid gap-1.5 leading-none">
-                  <Label htmlFor={option.id}>{option.label}</Label>
-                  {option.description && (
-                    <p className="text-sm text-muted-foreground">
-                      {option.description}
-                    </p>
-                  )}
-                </div>
+                <label 
+                  htmlFor={option.id} 
+                  className="text-sm cursor-pointer"
+                >
+                  {option.label}
+                </label>
               </div>
             ))}
           </div>
@@ -130,15 +117,15 @@ export function SidebarFilter() {
         <h3 className="text-sm font-medium">Faixa de preço</h3>
         <div className="px-2">
           <Slider
-            defaultValue={priceRange}
-            max={100}
+            defaultValue={[0, priceFilter || 500]}
+            max={500}
             step={1}
             value={priceRange}
-            onValueChange={setPriceRange}
+            onValueChange={handlePriceChange}
           />
           <div className="flex justify-between mt-2 text-sm text-muted-foreground">
-            <span>${priceRange[0]}</span>
-            <span>${priceRange[1]}</span>
+            <span>R${priceRange[0]}</span>
+            <span>R${priceRange[1]}</span>
           </div>
         </div>
       </div>
