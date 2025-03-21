@@ -104,7 +104,7 @@ export default function Page() {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const paginatedProducts = filteredProducts.slice(
       startIndex,
-      startIndex + itemsPerPage
+      startIndex + itemsPerPage,
     );
 
     setProducts(
@@ -114,17 +114,26 @@ export default function Page() {
         price: Number(product.price),
         image: product.picture || "/artesanato1.jpg",
         category: product.category,
-      }))
+      })),
     );
 
-    const calculatedTotalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+    const calculatedTotalPages = Math.ceil(
+      filteredProducts.length / itemsPerPage,
+    );
     setTotalPages(calculatedTotalPages);
 
     // 🔹 Garante que a página atual não ultrapasse o número de páginas disponíveis
     if (currentPage > calculatedTotalPages) {
       setCurrentPage(Math.max(1, calculatedTotalPages));
     }
-  }, [allProducts, categoryFilter, priceFilter, sizeFilter, searchTerm, currentPage]);
+  }, [
+    allProducts,
+    categoryFilter,
+    priceFilter,
+    sizeFilter,
+    searchTerm,
+    currentPage,
+  ]);
 
   return (
     <>

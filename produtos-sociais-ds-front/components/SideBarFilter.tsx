@@ -13,7 +13,7 @@ interface FilterOption {
 
 interface FilterSection {
   title: string;
-  type: 'category' | 'size';
+  type: "category" | "size";
   options: FilterOption[];
 }
 
@@ -36,28 +36,28 @@ export function SidebarFilter({
   priceFilter,
   setPriceFilter,
   categories = [],
-  sizes = []
+  sizes = [],
 }: SidebarFilterProps) {
   // Converter as categorias e tamanhos em opções de filtro
   const filterSections: FilterSection[] = [
     {
       title: "Categorias",
-      type: 'category',
+      type: "category",
       options: categories.map((category, index) => ({
         id: `cat${index}`,
         value: category,
-        label: category
-      }))
+        label: category,
+      })),
     },
     {
       title: "Tamanho",
-      type: 'size',
+      type: "size",
       options: sizes.map((size, index) => ({
         id: `size${index}`,
         value: size,
-        label: size
-      }))
-    }
+        label: size,
+      })),
+    },
   ];
 
   // Valor do slider de preço (mínimo e máximo)
@@ -70,10 +70,14 @@ export function SidebarFilter({
   };
 
   // Manipula a mudança de checkbox para categoria ou tamanho
-  const handleCheckboxChange = (checked: boolean, value: string, type: 'category' | 'size') => {
-    if (type === 'category') {
+  const handleCheckboxChange = (
+    checked: boolean,
+    value: string,
+    type: "category" | "size",
+  ) => {
+    if (type === "category") {
       setCategoryFilter(checked ? value : null);
-    } else if (type === 'size') {
+    } else if (type === "size") {
       setSizeFilter(checked ? value : null);
     }
   };
@@ -89,22 +93,19 @@ export function SidebarFilter({
                 <Checkbox
                   id={option.id}
                   checked={
-                    section.type === 'category' 
+                    section.type === "category"
                       ? categoryFilter === option.value
                       : sizeFilter === option.value
                   }
                   onCheckedChange={(checked) =>
                     handleCheckboxChange(
-                      checked as boolean, 
+                      checked as boolean,
                       option.value,
-                      section.type
+                      section.type,
                     )
                   }
                 />
-                <label 
-                  htmlFor={option.id} 
-                  className="text-sm cursor-pointer"
-                >
+                <label htmlFor={option.id} className="text-sm cursor-pointer">
                   {option.label}
                 </label>
               </div>
