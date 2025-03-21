@@ -17,6 +17,7 @@ interface ProductDetailProps {
     ong: string;
     contact: string;
     images: string[];
+    size?: string;
   };
 }
 
