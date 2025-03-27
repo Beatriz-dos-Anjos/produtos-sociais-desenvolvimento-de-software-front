@@ -194,7 +194,16 @@ export default function CreateProduct() {
         </div>
         <div className="grid grid-cols-3 gap-4 w-full max-w-2xl items-center mt-2">
           <div className="flex flex-col mb-2">
+<<<<<<< HEAD
             <div className="ml-2">Nome da ONG</div>
+=======
+            <div
+              className="ml-2"
+              style={{ fontSize: "14px", color: "#787878" }}
+            >
+              ONG afiliada
+            </div>
+>>>>>>> 78b1ece6490ca00f7aedd11ab5b0285490d200ac
             <Input
               type="text"
               id="ongs-afiliadas"
@@ -203,7 +212,16 @@ export default function CreateProduct() {
             />
           </div>
           <div className="flex flex-col mb-2">
+<<<<<<< HEAD
             <div className="ml-2">Estoque Disponível</div>
+=======
+            <div
+              className="ml-2"
+              style={{ fontSize: "14px", color: "#787878" }}
+            >
+              Estoque Disponível
+            </div>
+>>>>>>> 78b1ece6490ca00f7aedd11ab5b0285490d200ac
             <Input
               type="text"
               id="estoque-disponivel"
@@ -212,7 +230,16 @@ export default function CreateProduct() {
             />
           </div>
           <div className="flex flex-col mb-2">
+<<<<<<< HEAD
             <div className="ml-2">Preço</div>
+=======
+            <div
+              className="ml-2"
+              style={{ fontSize: "14px", color: "#787878" }}
+            >
+              Preço
+            </div>
+>>>>>>> 78b1ece6490ca00f7aedd11ab5b0285490d200ac
             <Input
               type="text"
               id="preco"
