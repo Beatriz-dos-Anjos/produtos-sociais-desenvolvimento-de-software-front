@@ -128,8 +128,7 @@ export default function Home() {
           flexDirection: "column",
           marginTop: "5rem",
         }}
-      >
-      </div>
+      ></div>
       <Footer />{" "}
     </div>
   );
