@@ -129,21 +129,6 @@ export default function Home() {
           marginTop: "5rem",
         }}
       >
-        <div className="font-bold"> ONGs participantes</div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            marginLeft: "1.50rem",
-          }}
-        >
-          {" "}
-          <Image src={participantOngs} alt="ONGs participantes" />
-          <Image src={participantOngs} alt="ONGs participantes" />
-          <Image src={participantOngs} alt="ONGs participantes" />
-          <Image src={participantOngs} alt="ONGs participantes" />
-          <Image src={participantOngs} alt="ONGs participantes" />
-        </div>
       </div>
       <Footer />{" "}
     </div>
