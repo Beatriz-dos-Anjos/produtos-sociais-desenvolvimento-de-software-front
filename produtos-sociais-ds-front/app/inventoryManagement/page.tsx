@@ -18,7 +18,7 @@ export default function GerenciamentoDeEstoque() {
 
   // Buscar produtos ao montar:
   useEffect(() => {
-    fetch("http://localhost:3001/products", { //Link Local!
+    fetch("http://localhost:3018/products", { //Link Local!
       method: "GET"
     })
       .then((res) => res.json())
@@ -34,12 +34,11 @@ export default function GerenciamentoDeEstoque() {
 
   const deleteItems = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:3001/products/${id}`, { //Link Local!
+      const response = await fetch(`http://localhost:3018/products/${id}`, { 
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          //OBS: Isso teoricamente precisa ser volatil é necessário definir.
-          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFwaXRlc3RlMkByZG1hcHBzLmNvbS5iciIsIm5hbWUiOiJhcGkgdGVzdGUyIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQyNTAxNTU0LCJleHAiOjE3NDI1MDUxNTR9.m5NwLzqkyKPeIuOIXWAdeKpGqJ4GTfKLnZEWy8X8-Gc"
+
         }
       });
       if (response.ok) {
@@ -89,7 +88,7 @@ export default function GerenciamentoDeEstoque() {
                   className="w-full aspect-square object-cover rounded-lg mb-3"
                 />
                 <h2 className="text-sm font-bold text-[#1E293B] mb-1">
-                  {product.title}
+                  {product.productName}
                 </h2>
                 <div className="space-y-0.5 text-sm mb-3">
                   <p className="text-[#3340FA]">Preço: {product.price}</p>
