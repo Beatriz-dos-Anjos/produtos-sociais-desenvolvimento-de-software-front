@@ -15,39 +15,23 @@ const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
 // This would typically come from your database or API
 const mockProduct = {
-  name: "Conjunto de palha",
-  price: 50.0,
-  maker: "Daniela Alves",
-  ong: "Mãos unidas",
-  contact: "(81) 9999-9999",
-  category: "Artesanato",
-  region: "Pernambuco",
-  description:
-    "Este conjunto de artesanato de palha é composto por uma cesta decorativa, um jogo de porta-copos e um chapéu de palha estilizado. As peças são feitas manualmente com técnicas tradicionais de trançado, valorizando a cultura artesanal brasileira. As fibras naturais são cuidadosamente selecionadas para garantir resistência e beleza, sendo tingidas com corantes naturais para criar padrões únicos. O design combina funcionalidade e estética, tornando o conjunto ideal para presentear ou decorar ambientes com um toque rústico e elegante.",
-  colors: ["bege", "marrom"],
-  images: ["/artesanato1.jpg", "/artesanato2.jpg"],
+  name: "Pintura em Tela",
+  price: 350.0,
+  maker: "João Pintor",
+  ong: "ONG Arte Viva",
+  contact: "11988887777",
+  category: "Quadros",
+  region: "São Paulo",
+  description: "Pintura artística em tela com moldura de madeira sustentável.",
+  colors: ["Vermelho", "Azul"],
+  images: ["https://imagem.com/pintura-tela.png"],
   artisan: {
-    name: "Daniela Alves",
-    place: "Ibura - Recife",
-    story:
-      "Daniela começou a trabalhar com artesanato desde a infância, e sua paixão por criar peças únicas a levou a abrir seu próprio negócio.",
+    name: "João Pintor",
+    place: "São Paulo",
+    story: "Artista plástico há 10 anos.",
   },
-  relatedProducts: [
-    {
-      name: "Cesta de palha",
-      price: 30.0,
-      image: "/cesta.jpg",
-      maker: "Maria Silva",
-      ong: "Mãos unidas",
-    },
-    {
-      name: "Decoração de parede",
-      price: 40.0,
-      image: "/decoracao.jpg",
-      maker: "João Pereira",
-      ong: "Mãos unidas",
-    },
-  ],
+  relatedProducts: [],
+  size: "M", // 🔹 ADICIONANDO ESSA LINHA PARA CORRIGIR O ERRO
 };
 
 export default function ProductPage() {

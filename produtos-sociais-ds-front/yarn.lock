@@ -4070,9 +4070,15 @@ editor@~1.0.0:
   integrity sha512-SoRmbGStwNYHgKfjOrX2L0mUvp9bUVv0uPppZSOMAntEbcFtoC3MKF5b3T6HQPXKIV+QGY3xPO3JK5it5lVkuw==
 
 electron-to-chromium@^1.5.73:
+<<<<<<< HEAD
   version "1.5.122"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.122.tgz#4fabd37b30b71dc041f6c6c4bab309b3f8348fcb"
   integrity sha512-EML1wnwkY5MFh/xUnCvY8FrhUuKzdYhowuZExZOfwJo+Zu9OsNCI23Cgl5y7awy7HrUHSwB1Z8pZX5TI34lsUg==
+=======
+  version "1.5.123"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.123.tgz#fae5bdba0ba27045895176327aa79831aba0790c"
+  integrity sha512-refir3NlutEZqlKaBLK0tzlVLe5P2wDKS7UQt/3SpibizgsRAPOsqQC3ffw1nlv3ze5gjRQZYHoPymgVZkplFA==
+>>>>>>> d49f268472a7405756e18b51172692b31f5b98f4
 
 embla-carousel-react@^8.5.2:
   version "8.5.2"
@@ -7540,7 +7546,10 @@ process-nextick-args@~2.0.0:
     "@mui/styled-engine" "^5.14.18"
     "@mui/system" "^6.4.3"
     "@radix-ui/react-checkbox" "^1.1.4"
+<<<<<<< HEAD
     "@radix-ui/react-compose-refs" "^1.1.1"
+=======
+>>>>>>> d49f268472a7405756e18b51172692b31f5b98f4
     "@radix-ui/react-dialog" "^1.1.6"
     "@radix-ui/react-label" "^2.1.2"
     "@radix-ui/react-popover" "^1.1.6"
@@ -7554,7 +7563,11 @@ process-nextick-args@~2.0.0:
     lucide-react "^0.474.0"
     next "15.1.0"
     npx "^10.2.2"
+<<<<<<< HEAD
     produtos-sociais-ds-front "file:../../../../AppData/Local/Yarn/Cache/v6/npm-produtos-sociais-ds-front-0.1.0-128deb34-70bb-429a-8bc8-28a1919f12c4-1742491303398/node_modules/produtos-sociais-ds-front"
+=======
+    produtos-sociais-ds-front "file:../../../AppData/Local/Yarn/Cache/v6/npm-produtos-sociais-ds-front-0.1.0-16a91d26-6ba3-4b74-ac5c-0a101db944cd-1742499665711/node_modules/produtos-sociais-ds-front"
+>>>>>>> d49f268472a7405756e18b51172692b31f5b98f4
     react "^18.2.0"
     react-dom "^18.2.0"
     tailwind-merge "^3.0.1"

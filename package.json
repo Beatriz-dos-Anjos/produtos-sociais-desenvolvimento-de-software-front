@@ -1,0 +1,33 @@
+{
+  "name": "produtos-sociais-desenvolvimento-de-software-front",
+  "version": "1.0.0",
+  "description": "Frontend do projeto Produtos Sociais - Desenvolvimento de Software",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "CIn UFPE",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@radix-ui/react-label": "^2.1.2",
+    "@radix-ui/react-select": "^2.1.6",
+    "@svgr/webpack": "^8.1.0",
+    "lint": "^0.8.19",
+    "next": "^15.1.0",
+    "prettier": "^3.5.3",
+    "produtos-sociais-desenvolvimento-de-software-front": "file:",
+    "radix-ui": "^1.1.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "@types/react": "^19.0.8",
+    "typescript": "^5.7.3"
+  }
+}
