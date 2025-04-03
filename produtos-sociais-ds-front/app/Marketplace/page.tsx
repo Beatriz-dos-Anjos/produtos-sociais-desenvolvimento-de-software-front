@@ -45,7 +45,7 @@ export default function Page() {
     try {
       setLoading(true);
 
-      let url = "http://localhost:3000/products";
+      let url = "http://localhost:3018/products";
 
       // Construir os parâmetros de filtro dinamicamente
       const queryParams = new URLSearchParams();

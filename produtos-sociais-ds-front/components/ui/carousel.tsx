@@ -20,7 +20,7 @@ export default function ProductCarousel() {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/products")
+    fetch("http://localhost:3018/products")
       .then((response) => response.json())
       .then((data) => setProducts(data.slice(0, 5)))
       .catch((error) => console.error("Erro ao buscar produtos:", error));
