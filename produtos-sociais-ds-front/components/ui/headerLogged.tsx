@@ -45,8 +45,6 @@ export default function Header() {
               Notificações
             </button>
           </nav>
-
-          
         </div>
 
         <button
@@ -97,8 +95,6 @@ export default function Header() {
               />
             </div>
           )}
-
-          
         </div>
       )}
     </header>
