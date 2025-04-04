@@ -14,29 +14,33 @@ const ModalEntry: React.FC = () => {
   const [password, setPassword] = useState("");
   const [erro, setErro] = useState("");
 
-  const handleLogin = async () => {
-    setErro("");
-    try {
-      const response = await fetch("http://localhost:3018/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }), // Changed 'senha' to 'password'
-        credentials: "include", // Important for cookies
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        // The backend sets an HTTP-only cookie, so you don't need to store the token
-        router.push("/inventoryManagement");
-      } else {
-        setErro(data.error || "Credenciais inválidas.");
-      }
-    } catch (error) {
-      console.error(error);
-      setErro("Erro ao conectar com o servidor.");
-    }
+  const handleClick = () => {
+    router.push("/inventoryManagement");
   };
+
+  // const handleLogin = async () => {
+  //   setErro("");
+  //   try {
+  //     const response = await fetch("http://localhost:3018/auth/login", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ email, password }), // Changed 'senha' to 'password'
+  //       credentials: "include", // Important for cookies
+  //     });
+
+  //     const data = await response.json();
+
+  //     if (response.ok) {
+  //       // The backend sets an HTTP-only cookie, so you don't need to store the token
+  //       router.push("/inventoryManagement");
+  //     } else {
+  //       setErro(data.error || "Credenciais inválidas.");
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     setErro("Erro ao conectar com o servidor.");
+  //   }
+  // };
   return (
     <div
       style={{
@@ -126,7 +130,7 @@ const ModalEntry: React.FC = () => {
 
             <Button
               className={`w-[152px] h-[35px] bg-[#6672FA] text-white rounded-[4px] ml-24 mt-10 ${dmSans.className}`}
-              onClick={handleLogin}
+              onClick={handleClick}
             >
               Entrar
             </Button>
