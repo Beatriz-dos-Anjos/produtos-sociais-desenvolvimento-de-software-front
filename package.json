@@ -17,6 +17,7 @@
     "@radix-ui/react-label": "^2.1.2",
     "@radix-ui/react-select": "^2.1.6",
     "@svgr/webpack": "^8.1.0",
+    "axios": "^1.8.4",
     "lint": "^0.8.19",
     "next": "^15.1.0",
     "prettier": "^3.5.3",
