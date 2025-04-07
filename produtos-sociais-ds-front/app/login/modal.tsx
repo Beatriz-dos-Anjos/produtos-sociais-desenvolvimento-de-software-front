@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import logo from "../../public/logo.svg";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { DM_Sans } from "next/font/google";
@@ -69,7 +68,7 @@ const ModalEntry: React.FC = () => {
               flexDirection: "column",
             }}
           >
-            <Image src={logo} alt="Logo" />
+            <Image src="/logo.svg" alt="Logo" width={300} height={150} />
             <div className="relative w-full max-w-sm mt-10">
               <div className="relative">
                 <label
