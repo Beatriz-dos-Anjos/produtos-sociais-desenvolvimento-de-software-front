@@ -8,39 +8,22 @@ import { Button } from "@/components/ui/button";
 import { DM_Sans } from "next/font/google";
 import { useRouter } from "next/navigation";
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
+
 const ModalEntry: React.FC = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [erro, setErro] = useState("");
 
+  const isValidCredentials = email === "apiteste2@rdmapps.com.br" && password === "123456";
   const handleClick = () => {
-    router.push("/inventoryManagement");
+    if (email === "apiteste2@rdmapps.com.br" && password === "123456") {
+      setErro("");
+      router.push("/inventoryManagement");
+    } else {
+      setErro("Credenciais erradas");
+    }
   };
-
-  // const handleLogin = async () => {
-  //   setErro("");
-  //   try {
-  //     const response = await fetch("http://localhost:3018/auth/login", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ email, password }), // Changed 'senha' to 'password'
-  //       credentials: "include", // Important for cookies
-  //     });
-
-  //     const data = await response.json();
-
-  //     if (response.ok) {
-  //       // The backend sets an HTTP-only cookie, so you don't need to store the token
-  //       router.push("/inventoryManagement");
-  //     } else {
-  //       setErro(data.error || "Credenciais inválidas.");
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     setErro("Erro ao conectar com o servidor.");
-  //   }
-  // };
   return (
     <div
       style={{
@@ -129,8 +112,13 @@ const ModalEntry: React.FC = () => {
             {erro && <p className="text-red-500 mt-2">{erro}</p>}
 
             <Button
-              className={`w-[152px] h-[35px] bg-[#6672FA] text-white rounded-[4px] ml-24 mt-10 ${dmSans.className}`}
+              disabled={!isValidCredentials}
               onClick={handleClick}
+              className={`w-[152px] h-[35px] rounded-[4px] ml-24 mt-10 ${dmSans.className} ${
+                isValidCredentials
+                  ? "bg-[#6672FA] text-white"
+                  : "bg-gray-400 text-white opacity-70 cursor-not-allowed"
+              }`}
             >
               Entrar
             </Button>
