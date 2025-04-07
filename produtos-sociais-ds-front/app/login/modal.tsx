@@ -15,7 +15,8 @@ const ModalEntry: React.FC = () => {
   const [password, setPassword] = useState("");
   const [erro, setErro] = useState("");
 
-  const isValidCredentials = email === "apiteste2@rdmapps.com.br" && password === "123456";
+  const isValidCredentials =
+    email === "apiteste2@rdmapps.com.br" && password === "123456";
   const handleClick = () => {
     if (email === "apiteste2@rdmapps.com.br" && password === "123456") {
       setErro("");
